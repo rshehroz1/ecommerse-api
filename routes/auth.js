@@ -13,6 +13,27 @@ router.post('/signup',(req, res)=>{
         res.status(422).json({error: "Iltimos barcha ma'lumotlarni kiriting"})
     }
     res.json({msg: "Muvaffaqiyatli yuborildi"})
+
+    User.findOne({ email: email })
+    .then((savedUser) =>{
+        if(savedUser){
+            return res
+            .status(422)
+            .json({error: "User already exists with that email"})
+        }
+        const user = new User({
+            email,
+            name, 
+            password,
+        })
+        user.save()
+    })
+    .then(user =>{
+        res.json({msg: "added successfully"})
+    })
+    .catch(err =>{
+        console.log(err);
+    })
 })
 
 module.exports = router
