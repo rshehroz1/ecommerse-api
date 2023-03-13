@@ -15,7 +15,7 @@ const postSchema = new Schema({
         default: "No photo"
     },
     posteBy: {
-        type: ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "User"
     }
 })
