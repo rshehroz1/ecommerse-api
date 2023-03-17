@@ -24,7 +24,7 @@ router.post('/signup',(req, res)=>{
         if(savedUser){
             return res
             .status(422)
-            .json({error: "User already exists with that email"})
+            .json({error: "Bu email oldin ro'yxatdan o'tgan"})
         }
         bcrypt.hash(password, 10)
         .then(hashedPass =>{
@@ -35,7 +35,7 @@ router.post('/signup',(req, res)=>{
             })
             user.save()
             .then((user) =>{
-                res.json({msg: "added successfully"})
+                res.json({msg: "Siz muvffaqiyatli ro'yxatdan o'tdingiz"})
             })
             .catch((err) =>{
                 console.log(err);
